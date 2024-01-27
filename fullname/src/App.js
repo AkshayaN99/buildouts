@@ -7,9 +7,7 @@ function App(){
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
 
-  useEffect(() => { 
-    console.log("logging this here")
-    }, [])
+ 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +40,7 @@ function App(){
 
   return (
     <div>
+      <h2>Full Name Display</h2>
       <form onSubmit={handleSubmit}>
         {firstNameError && <p>{firstNameError}</p>}
         {lastNameError && <p>{lastNameError}</p>}
