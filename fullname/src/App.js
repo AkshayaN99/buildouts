@@ -7,9 +7,9 @@ function App(){
   const [firstNameError, setFirstNameError] = useState('');
   const [lastNameError, setLastNameError] = useState('');
 
-  useEffect(()=>{
-    window.location.reload();
-  },[])
+  useEffect(() => { 
+    console.log("logging this here")
+    }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
