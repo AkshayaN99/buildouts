@@ -40,10 +40,11 @@ function App(){
 
   return (
     <div>
-      <h2>Full Name Display</h2>
+      
       <form onSubmit={handleSubmit}>
         {firstNameError && <p>{firstNameError}</p>}
         {lastNameError && <p>{lastNameError}</p>}
+        <h1>Full Name Display</h1>
         <label>
           First Name:
           <input
