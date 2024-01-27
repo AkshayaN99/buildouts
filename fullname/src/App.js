@@ -8,6 +8,7 @@ function App(){
   const [lastNameError, setLastNameError] = useState('');
 
   useEffect(()=>{
+    window.location.reload();
   },[])
 
   const handleInputChange = (e) => {
