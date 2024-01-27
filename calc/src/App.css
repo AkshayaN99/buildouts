@@ -27,7 +27,6 @@ button {
   cursor: pointer;
 }
 
-.clear-button {
-  grid-column: span 2;
-  background-color: #ff6347;
+.he {
+  text-align: center;
 }
