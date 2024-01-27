@@ -1,51 +1,73 @@
 import React, { useState } from 'react';
 
-function App() {
+function App(){
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [fullName, setFullName] = useState('');
-  const [err,setErr]=useState("")
+  const [firstNameError, setFirstNameError] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
 
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'firstName' ) {
+      const regex = /^[a-zA-Z]+$/;
+    if (!regex.test(value)) {
+      setFirstNameError('First Name should contain only alphabets');
+    } else {
+      setFirstNameError('');
+      setFirstName(value);
+    }
+      
+    } else if (name === 'lastName') {
+      const regex = /^[a-zA-Z]+$/;
+    if (!regex.test(value)) {
+      setLastNameError('Last Name should contain only alphabets');
+    } else {
+      setLastNameError('');
+      setLastName(value);
+    }
+  }  
+
   };
 
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
-  const handleSubmission = (e) => {
-    e.preventdefault();
-    if(firstName===""&& lastName===""){
-         setErr("Invalid")
-    }else if (firstName==="" || lastName===""){
-      setErr("Invalid")
- }else{
-    const concatenatedName = `${firstName} ${lastName}`;
-    setFullName(concatenatedName);
- }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newFullName = `${firstName} ${lastName}`.trim();
+    setFullName(newFullName);
   };
 
   return (
-    <form onSubmit={handleSubmission}>
-      {err && <p>{err}</p>}
     <div>
-      <label>
-        First Name:
-        <input type="text" value={firstName} onChange={handleFirstNameChange} required />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input type="text" value={lastName} onChange={handleLastNameChange} required />
-      </label>
-      <br />
-      <button type='submit'>Submit</button>
-      <br />
+      <form onSubmit={handleSubmit}>
+        {firstNameError && <p>{firstNameError}</p>}
+        {lastNameError && <p>{lastNameError}</p>}
+        <label>
+          First Name:
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Last Name:
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
       {fullName && <p>Full Name: {fullName}</p>}
     </div>
-    </form>
   );
-}
+};
 
 export default App;
